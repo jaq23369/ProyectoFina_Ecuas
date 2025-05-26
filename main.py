@@ -87,3 +87,42 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
+# Heun 2do orden
+def sistema_segundo_orden(t, Y):
+    y1, y2 = Y
+    dy1dt = y2
+    dy2dt = -3 * y2 - 2 * y1 + t
+    return np.array([dy1dt, dy2dt])
+
+def heun_sistema(f, Y0, t0, tf, h):
+    n = int((tf - t0) / h)
+    t_values = np.linspace(t0, tf, n + 1)
+    Y_values = np.zeros((n + 1, len(Y0)))
+    Y_values[0] = Y0
+
+    for i in range(n):
+        t = t_values[i]
+        Y_n = Y_values[i]
+        k1 = f(t, Y_n)
+        k2 = f(t + h, Y_n + h * k1)
+        Y_values[i + 1] = Y_n + (h / 2) * (k1 + k2)
+
+    return t_values, Y_values
+
+# Parámetros
+Y0 = np.array([1.0, 0.0])  # y(0) = 1, y'(0) = 0
+t0_heun = 0
+tf_heun = 5
+h_heun = 0.1
+
+# Heun 
+t_heun, Y_heun = heun_sistema(sistema_segundo_orden, Y0, t0_heun, tf_heun, h_heun)
+
+# Graficar resultados
+plt.plot(t_heun, Y_heun[:, 0], 'g-', label="y(t) Heun (2do orden)")
+plt.xlabel("t")
+plt.ylabel("y(t)")
+plt.title("Solución de y'' + 3y' + 2y = t usando Heun")
+plt.grid(True)
+plt.legend()
+plt.show()
