@@ -7,22 +7,25 @@ Este proyecto implementa métodos numéricos para resolver ecuaciones diferencia
 ## 📌 Ecuaciones resueltas
 
 ### 1. EDO de primer orden
-\[
+
+```math
 \frac{dy}{dt} = -2y + 1,\quad y(0) = 0
-\]
+```
 
 ### 2. Sistema de EDOs 2x2
-\[
+
+```math
 \begin{cases}
 \frac{dx}{dt} = 0.3x + 0.4y \\
 \frac{dy}{dt} = -0.4x + 0.3y
 \end{cases},\quad x(0) = 1,\ y(0) = 0
-\]
+```
 
 ### 3. EDO de segundo orden no homogénea
-\[
+
+```math
 \frac{d^2y}{dt^2} + 3\frac{dy}{dt} + 2y = t,\quad y(0) = 1,\ y'(0) = 0
-\]
+```
 
 ---
 
@@ -37,14 +40,31 @@ Ambos métodos fueron aplicados a cada ecuación para comparar la precisión y c
 
 ## 📦 Requisitos
 
-- Python 3.8+
+Este proyecto requiere Python 3.8+ y utiliza las siguientes bibliotecas:
+
 - NumPy
 - Matplotlib
 
-Puedes instalar los paquetes necesarios con:
+Estas librerías ya vienen preinstaladas en algunos entornos como Anaconda o Google Colab.  
+Si estás usando una instalación limpia de Python, seguí estas instrucciones según tu sistema operativo:
+
+### 🔧 Instalación en Windows
+
+1. Hay que tener Python y `pip` instalados.
+2. Abrí CMD o PowerShell y ejecuta:
 
 ```bash
 pip install numpy matplotlib
+```
+
+### 🔧 Instalación en macOS
+
+1. Asegurate de tener Python 3 instalado (puedes usar Homebrew).
+2. Abrí la Terminal y ejecuta:
+
+```bash
+brew install python
+pip3 install numpy matplotlib
 ```
 
 ---
@@ -64,12 +84,11 @@ Se generarán varias gráficas mostrando las soluciones aproximadas con los mét
 ## 📈 Salidas esperadas
 
 - Gráficas comparativas de las soluciones para cada ecuación.
-- Visualización clara del comportamiento dinámico de cada sistema.
+- Visualización del comportamiento dinámico de cada sistema.
 
 ---
 
 ## 👨‍💻 Autores
 
 - Joel Jaquez - 23369  
-- Samuel Mejía - 23442  
-- Universidad del Valle de Guatemala
+- Samuel Mejía - 23442 
