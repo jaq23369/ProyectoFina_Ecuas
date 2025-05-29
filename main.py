@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Función 1
+ # EDO de primer orden (1)
 def f(t, y):
     return -2 * y + 1
 
@@ -64,11 +64,11 @@ plt.legend()
 plt.show()
 
 
-# Función 2, sistema 2x2
+# Sistema de EDOs 2x2 (2)
 def sistema(t, u):
     x, y = u
-    dxdt = 3 * x + 4 * y
-    dydt = -4 * x + 3 * y
+    dxdt = 0.3 * x + 0.4 * y
+    dydt = -0.4 * x + 0.3 * y
     return np.array([dxdt, dydt])
 
 def runge_kutta_4_sistema(f, u0, t0, tf, h):
@@ -102,7 +102,7 @@ plt.plot(t_sys, u_sys[:, 0], 'r-', label="x(t) RK4")
 plt.plot(t_sys, u_sys[:, 1], 'b-', label="y(t) RK4")
 plt.xlabel("t")
 plt.ylabel("Valores")
-plt.title("Sistema dx/dt = 3x + 4y, dy/dt = -4x + 3y usando RK4")
+plt.title("Sistema dx/dt = 0.3x + 0.4y, dy/dt = -0.4x + 0.3y usando RK4")
 plt.grid(True)
 plt.legend()
 plt.show()
@@ -131,18 +131,20 @@ plt.plot(t_sys_heun, u_sys_heun[:, 0], 'm--', label="x(t) Heun")
 plt.plot(t_sys_heun, u_sys_heun[:, 1], 'c--', label="y(t) Heun")
 plt.xlabel("t")
 plt.ylabel("Valores")
-plt.title("Sistema dx/dt = 3x + 4y, dy/dt = -4x + 3y usando Heun")
+plt.title("Sistema dx/dt = 0.3x + 0.4y, dy/dt = -0.4x + 0.3y usando Heun")
 plt.grid(True)
 plt.legend()
+ax = plt.gca()
+ax.ticklabel_format(style='plain', axis='y')
 plt.show()
 
-# Heun 2do orden
+ # EDO de segundo orden no homogénea (3)
 def sistema_segundo_orden(t, Y):
     y1, y2 = Y
     dy1dt = y2
     dy2dt = -3 * y2 - 2 * y1 + t
     return np.array([dy1dt, dy2dt])
-
+# Heun
 def heun_sistema(f, Y0, t0, tf, h):
     n = int((tf - t0) / h)
     t_values = np.linspace(t0, tf, n + 1)
@@ -158,6 +160,7 @@ def heun_sistema(f, Y0, t0, tf, h):
 
     return t_values, Y_values
 
+# RK4
 def runge_kutta_4_sistema_2do_orden(f, Y0, t0, tf, h):
     n = int((tf - t0) / h)
     t_values = np.linspace(t0, tf, n + 1)
@@ -183,7 +186,7 @@ h_heun = 0.1
 
 # Heun 
 t_heun, Y_heun = heun_sistema(sistema_segundo_orden, Y0, t0_heun, tf_heun, h_heun)
-
+# RK4
 t_rk4, Y_rk4 = runge_kutta_4_sistema_2do_orden(sistema_segundo_orden, Y0, t0_heun, tf_heun, h_heun)
 
 # Graficar resultados
@@ -194,6 +197,4 @@ plt.ylabel("y(t)")
 plt.title("Solución de y'' + 3y' + 2y = t usando Heun y RK4")
 plt.grid(True)
 plt.legend()
-ax = plt.gca()
-ax.ticklabel_format(style='plain', axis='y', useOffset=False)
 plt.show()
