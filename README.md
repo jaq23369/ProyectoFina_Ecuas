@@ -24,7 +24,7 @@ Este proyecto implementa métodos numéricos para resolver ecuaciones diferencia
 ### 3. EDO de segundo orden no homogénea
 
 ```math
-\frac{d^2y}{dt^2} + 3\frac{dy}{dt} + 2y = t,\quad y(0) = 1,\ y'(0) = 0
+\frac{d^2y}{dt^2} + 3\frac{dy}{dt} + 2y = sen(t),\quad y(0) = 1,\ y'(0) = 0
 ```
 
 ---
